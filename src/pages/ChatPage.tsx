@@ -127,8 +127,8 @@ const ChatPage = () => {
                 <img
                   src={
                     theme === "dark"
-                      ? "/Detalk-App/pictures/DeTalk-LightLogo.png"
-                      : "/Detalk-App/pictures/DeTalk-DarkLogo.png"
+                      ? "pictures/DeTalk-LightLogo.png"
+                      : "pictures/DeTalk-DarkLogo.png"
                   }
                   alt="DeTalk Logo"
                   className="w-50 h-24 mx-auto mb-4 opacity-60"

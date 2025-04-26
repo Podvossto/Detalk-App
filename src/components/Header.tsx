@@ -68,7 +68,7 @@ export const Header = () => {
           <Link to="/chat" className="flex items-center">
             {/* <MessageSquare className="h-6 w-6 text-crypto-indigo mr-2" /> */}
             <img
-              src="/Detalk-App/pictures/DeTalk-DarkLogo.png"
+              src="pictures/DeTalk-DarkLogo.png"
               alt="DeTalk"
               className="w-24"
             />
