@@ -55,14 +55,14 @@ const Index = () => {
             <div className="h-8">
               {theme === "dark" ? (
                 <img
-                  src="pictures/DeTalk-LightLogo.png"
+                  src="/Detalk-App/pictures/DeTalk-LightLogo.png"
                   alt="DeTalk Logo"
                   className="h-full px-5"
                   style={{ transform: "scale(2)" }}
                 />
               ) : (
                 <img
-                  src="pictures/DeTalk-DarkLogo.png"
+                  src="/Detalk-App/pictures/DeTalk-LightLogo.png"
                   alt="DeTalk Logo"
                   className="h-full px-5"
                   style={{ transform: "scale(2)" }}
@@ -303,7 +303,7 @@ const Index = () => {
                     </AvatarFallback>
                     {/* Image will be added later */}
                     <AvatarImage
-                      src="pictures/PitchayaProfile.jpg"
+                      src="/Detalk-App/pictures/PitchayaProfile.jpg"
                       style={{
                         width: "100%",
                         height: "auto",
@@ -332,7 +332,7 @@ const Index = () => {
                     </AvatarFallback>
                     {/* Image will be added later */}
                     <AvatarImage
-                      src="pictures/PitchayapaProfile.jpg"
+                      src="/Detalk-App/pictures/PitchayapaProfile.jpg"
                       style={{
                         width: "100%",
                         height: "auto",
@@ -361,7 +361,7 @@ const Index = () => {
                     </AvatarFallback>
                     {/* Image will be added later */}
                     <AvatarImage
-                      src="pictures/PiyakitProfile.jpg"
+                      src="/Detalk-App/pictures/PiyakitProfile.jpg"
                       style={{
                         width: "100%",
                         height: "auto",
