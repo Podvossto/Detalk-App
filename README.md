@@ -37,11 +37,17 @@ https://Podvossto.github.io/Detalk-App
 ## 🔹 ฟีเจอร์หลัก
 
 - ลงทะเบียนด้วย Wallet Address พร้อมรับโทเคนเริ่มต้น 100 $CHAT
-- เพิ่มเพื่อน / เช็คสถานะเพื่อน
+![CreateProfile](pictures/Screenshot/CreateProfile.png)
+- เพิ่มเพื่อน
+![CreateProfile](pictures/Screenshot/AllUser.png)
 - แชทแบบส่วนตัว (0.01 $CHAT ต่อข้อความ)
-- ส่ง/ขอโทเคนจากระบบ (จำกัด 10 $CHAT ต่อ 24 ชม.)
-- ดูโปรไฟล์/ยอดคงเหลือ/ประวัติแชท
-- Dark/Light Mode
+![CreateProfile](pictures/Screenshot/SentMessage.png)
+- ขอโทเคนจากระบบ (จำกัด 10 $CHAT ต่อ 24 ชม.)
+![CreateProfile](pictures/Screenshot/GetToken.png)
+- ดูโปรไฟล์ / ยอด TOKEN คงเหลือ / ประวัติธุรกรรมต่างๆ
+![CreateProfile](pictures/Screenshot/Profile.png)
+- ธีม Dark / Light Mode
+![CreateProfile](pictures/Screenshot/Setting.png)
 
 ## 🚀 Smart Contract
 
