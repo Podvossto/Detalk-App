@@ -62,7 +62,7 @@ const Index = () => {
                 />
               ) : (
                 <img
-                  src="/Detalk-App/pictures/DeTalk-LightLogo.png"
+                  src="/Detalk-App/pictures/DeTalk-DarkLogo.png"
                   alt="DeTalk Logo"
                   className="h-full px-5"
                   style={{ transform: "scale(2)" }}
