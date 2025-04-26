@@ -1,6 +1,6 @@
 # DeTalk - แอปพลิเคชันแชทบนบล็อกเชน
 
-![DeTalk Logo](/DeTalk-App\src\pictures\DeTalk-DarkLogo.png)
+![DeTalk Logo](\src\pictures\DeTalk-DarkLogo.png)
 
 DeTalk เป็นแอปพลิเคชันแชทแบบกระจายศูนย์ (Decentralized Chat Application) ที่ทำงานบนบล็อกเชน Ethereum ด้วย Smart Contract และโทเคน $CHAT เพื่อการสื่อสารที่ปลอดภัย โปร่งใส และตรวจสอบได้
 
