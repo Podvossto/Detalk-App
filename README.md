@@ -36,18 +36,37 @@ https://Podvossto.github.io/Detalk-App
 
 ## 🔹 ฟีเจอร์หลัก
 
-- ลงทะเบียนด้วย Wallet Address พร้อมรับโทเคนเริ่มต้น 100 $CHAT
+### • ลงทะเบียนด้วย Wallet Address พร้อมรับโทเคนเริ่มต้น 100 $CHAT  
 ![CreateProfile](src/pictures/Screenshot/CreateProfile.png)
-- เพิ่มเพื่อน
-![CreateProfile](src/pictures/Screenshot/AllUser.png)
-- แชทแบบส่วนตัว (0.01 $CHAT ต่อข้อความ)
-![CreateProfile](src/pictures/Screenshot/SentMessage.png)
-- ขอโทเคนจากระบบ (จำกัด 10 $CHAT ต่อ 24 ชม.)
-![CreateProfile](src/pictures/Screenshot/GetToken.png)
-- ดูโปรไฟล์ / ยอด TOKEN คงเหลือ / ประวัติธุรกรรมต่างๆ
-![CreateProfile](src/pictures/Screenshot/Profile.png)
-- ธีม Dark / Light Mode
-![CreateProfile](src/pictures/Screenshot/Setting.png)
+
+---
+
+### • เพิ่มเพื่อน  
+<p align="center">
+  <img src="src/pictures/Screenshot/AllUser.png" width="400px" />
+</p>
+
+---
+
+### • แชทแบบส่วนตัว (0.01 $CHAT ต่อข้อความ)  
+![SentMessage](src/pictures/Screenshot/SentMessage.png)
+
+---
+
+### • ขอโทเคนจากระบบ (จำกัด 10 $CHAT ต่อ 24 ชม.)  
+![GetToken](src/pictures/Screenshot/GetToken.png)
+
+---
+
+### • ดูโปรไฟล์ / ยอด TOKEN คงเหลือ / ประวัติธุรกรรมต่างๆ  
+![Profile](src/pictures/Screenshot/Profile.png)
+
+---
+
+### • ธีม Dark / Light Mode  
+![Setting](src/pictures/Screenshot/Setting.png)
+
+---
 
 ## 🚀 Smart Contract
 
