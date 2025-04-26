@@ -361,7 +361,7 @@ const Index = () => {
                     </AvatarFallback>
                     {/* Image will be added later */}
                     <AvatarImage
-                      src="/pictures/PitchayapaProfile.jpg"
+                      src="/pictures/PiyakitProfile.jpg"
                       style={{
                         width: "100%",
                         height: "auto",
