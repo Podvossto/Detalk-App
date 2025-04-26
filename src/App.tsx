@@ -20,7 +20,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <ChatContractProvider>
-          <BrowserRouter>
+          <BrowserRouter basename="/Detalk-App">
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/chat" element={<ChatPage />} />
