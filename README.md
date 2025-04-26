@@ -9,7 +9,32 @@
 - [🚀 Smart Contract](#🚀-smart-contract)
 
 ---
+## 📄 สมาชิก
 
+<div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+
+  <div style="border: 1px solid #eee; border-radius: 10px; padding: 20px; width: 250px; text-align: center;">
+    <img src="src/pictures/PitchayaProfile.png" alt="PitchayaProfile" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
+    <h3 style="margin-top: 10px;">พิชยะ หุตะจูฑะ</h3>
+    <p>Student ID: 65051645</p>
+  </div>
+
+  <div style="border: 1px solid #eee; border-radius: 10px; padding: 20px; width: 250px; text-align: center;">
+    <img src="src/pictures/PitchayapaProfile.png" alt="PitchayapaProfile" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
+    <h3 style="margin-top: 10px;">พิชญาภา บุญถนอม</h3>
+    <p>Student ID: 65073814</p>
+  </div>
+
+  <div style="border: 1px solid #eee; border-radius: 10px; padding: 20px; width: 250px; text-align: center;">
+    <img src="src/pictures/Piyakit.png" alt="PiyakritProfile" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
+    <h3 style="margin-top: 10px;">ปิยย์กฤษณ์ วงศ์เกษมศักดิ์</h3>
+    <p>Student ID: 65054924</p>
+  </div>
+
+</div>
+
+
+---
 ## 📄 ภาพรวมโปรเจค
 
 DeTalk คือแพลตฟอร์มแชทบนบล็อกเชนที่ให้ผู้ใช้สามารถลงทะเบียน เพิ่มเพื่อน แชท ส่งโทเคน และดูประวัติการทำธุรกรรมได้ โดยมีโทเคน $CHAT เป็นสื่อกลางในการใช้งานระบบ ซึ่งทุกข้อความจะถูกจัดเก็บอย่างถาวรและปลอดภัยผ่าน Smart Contract
