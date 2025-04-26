@@ -11,23 +11,22 @@
 ---
 ## 📄 สมาชิก
 
-<div style="background-color: #0D0D2B; padding: 40px; display: flex; justify-content: center; gap: 60px; flex-wrap: wrap;">
-  <div style="text-align: center;">
-    <img src="src/pictures/PitchayaProfile.jpg" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%; background-color: white;">
-    <p style="color: white; margin-top: 15px; font-size: 18px;">65051645<br>พิชยะ หุตะจูฑะ</p>
-  </div>
-  
-  <div style="text-align: center;">
-    <img src="src/pictures/PitchayapaProfile.jpg" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%; background-color: white;">
-    <p style="color: white; margin-top: 15px; font-size: 18px;">65073814<br>พิชญาภา บุญถนอม</p>
-  </div>
-
-  <div style="text-align: center;">
-    <img src="src/pictures/PiyakitProfile.jpg" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%; background-color: white;">
-    <p style="color: white; margin-top: 15px; font-size: 18px;">65054924<br>ปิยย์กฤษณ์ วงศ์เกษมศักดิ์</p>
-  </div>
-</div>
-
+<table align="center">
+  <tr>
+    <td align="center">
+      <img src="src/pictures/PitchayaProfile.jpg" width="150" height="150" style="object-fit: cover; border-radius: 50%; overflow: hidden;"><br>
+      <sub>65051645<br>พิชยะ หุตะจูฑะ</sub>
+    </td>
+    <td align="center">
+      <img src="src/pictures/PitchayapaProfile.jpg" width="150" height="150" style="object-fit: cover; border-radius: 50%; overflow: hidden;"><br>
+      <sub>65073814<br>พิชญาภา บุญถนอม</sub>
+    </td>
+    <td align="center">
+      <img src="src/pictures/PiyakitProfile.jpg" width="150" height="150" style="object-fit: cover; border-radius: 50%; overflow: hidden;"><br>
+      <sub>65054924<br>ปิยย์กฤษณ์ วงศ์เกษมศักดิ์</sub>
+    </td>
+  </tr>
+</table>
 
 
 ---
