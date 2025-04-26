@@ -303,7 +303,7 @@ const Index = () => {
                     </AvatarFallback>
                     {/* Image will be added later */}
                     <AvatarImage
-                      src="\src\pictures\PitchayaProfile.jpg"
+                      src="/pictures/PitchayaProfile.jpg"
                       style={{
                         width: "100%",
                         height: "auto",
@@ -332,7 +332,7 @@ const Index = () => {
                     </AvatarFallback>
                     {/* Image will be added later */}
                     <AvatarImage
-                      src="\src\pictures\PitchayapaProfile.jpg"
+                      src="/pictures/PitchayapaProfile.jpg"
                       style={{
                         width: "100%",
                         height: "auto",
@@ -361,7 +361,7 @@ const Index = () => {
                     </AvatarFallback>
                     {/* Image will be added later */}
                     <AvatarImage
-                      src="\src\pictures\PiyakitProfile.jpg"
+                      src="/pictures/PitchayapaProfile.jpg"
                       style={{
                         width: "100%",
                         height: "auto",
