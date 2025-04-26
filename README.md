@@ -38,6 +38,7 @@ https://Podvossto.github.io/Detalk-App
 
 ### • ลงทะเบียนด้วย Wallet Address พร้อมรับโทเคนเริ่มต้น 100 $CHAT  
 ![CreateProfile](src/pictures/Screenshot/CreateProfile.png)
+<p>ตั้งชื่อและยืนยัน เมื่อ Transaction Success จะเข้าสู่ระบบอัตโนมัต</p>
 
 ---
 
@@ -45,16 +46,22 @@ https://Podvossto.github.io/Detalk-App
 <p align="center">
   <img src="src/pictures/Screenshot/AllUser.png" width="400px" />
 </p>
+<p>เห็น User ทุกคนที่อยู่ในระบบและสามารถแอดได้</p>
 
 ---
 
 ### • แชทแบบส่วนตัว (0.01 $CHAT ต่อข้อความ)  
 ![SentMessage](src/pictures/Screenshot/SentMessage.png)
+<p>สามารถส่งข้อความหาคนที่เป็นเพื่อนเท่านั้น</p>
+
+![SendToken](src/pictures/Screenshot/SendToken.png)
+<p>สามารถส่ง TOKEN CHAT ให้เพื่อนได้</p>
 
 ---
 
 ### • ขอโทเคนจากระบบ (จำกัด 10 $CHAT ต่อ 24 ชม.)  
 ![GetToken](src/pictures/Screenshot/GetToken.png)
+<p>กดรับ 10 CHAT TOKEN ทุกๆ 1 วัน</p>
 
 ---
 
