@@ -23,7 +23,7 @@
   </div>
 
   <div style="text-align: center;">
-    <img src="src/pictures/Piyakit.jpg" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%; background-color: white;">
+    <img src="src/pictures/PiyakitProfile.jpg" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%; background-color: white;">
     <p style="color: white; margin-top: 15px; font-size: 18px;">65054924<br>ปิยย์กฤษณ์ วงศ์เกษมศักดิ์</p>
   </div>
 </div>
