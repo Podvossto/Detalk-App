@@ -31,6 +31,7 @@ import { ethers } from "ethers";
 import { LogOut, Settings, User, MessageSquare, Menu } from "lucide-react";
 import { toast } from "@/components/ui/sonner";
 import { RequestTokenDialog } from "./RequestTokenDialog";
+import { PendingMessages } from "./PendingMessages";
 
 export const Header = () => {
   const { currentUser, currentAccount, tokenContract, disconnectWallet } =
@@ -86,6 +87,10 @@ export const Header = () => {
               </div>
             )}
 
+            <div className="hidden sm:block">
+              <PendingMessages />
+            </div>
+
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
@@ -121,6 +126,11 @@ export const Header = () => {
                     </div>
                   </DropdownMenuItem>
                 )}
+                <DropdownMenuItem asChild>
+                  <div className="sm:hidden">
+                    <PendingMessages />
+                  </div>
+                </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={handleLogout}>
                   <LogOut className="mr-2 h-4 w-4" />

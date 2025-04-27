@@ -8,8 +8,8 @@ import TokenContractABI from "../contracts/TokenContract.json";
 import { ChatContractContext, ChatContractContextType } from "./contexts";
 
 // Contract addresses
-const CHAT_CONTRACT_ADDRESS = "0x8096df84bB63576d87662E7f27893c3F705345B5";
-const TOKEN_CONTRACT_ADDRESS = "0x36dc8f727719135C8B9217aa0E5dd1B4990b8740";
+const CHAT_CONTRACT_ADDRESS = "0x47C4bdBb0977D926b956e0D6735FB3e6aA49d0e2";
+const TOKEN_CONTRACT_ADDRESS = "0x2C6c792ED415d7360e783761a425FACaa2B4343C";
 
 // User type definition
 export interface User {
