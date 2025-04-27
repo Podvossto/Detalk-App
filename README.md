@@ -97,9 +97,9 @@ https://Podvossto.github.io/Detalk-App
 
 ## 🚀 Smart Contract
 
-### ChatContract Address : 0xB2Af43467E4486788b81f3a373d9F8Af8e792920
+### ChatContract Address : 0x47C4bdBb0977D926b956e0D6735FB3e6aA49d0e2
 
-Link : https://holesky.etherscan.io/address/0xB2Af43467E4486788b81f3a373d9F8Af8e792920#readContract
+Link : [[https://holesky.etherscan.io/address/0xB2Af43467E4486788b81f3a373d9F8Af8e792920#readContract](https://holesky.etherscan.io/address/0x47C4bdBb0977D926b956e0D6735FB3e6aA49d0e2)](https://holesky.etherscan.io/address/0x47C4bdBb0977D926b956e0D6735FB3e6aA49d0e2#code)
 
 จัดการผู้ใช้ เพื่อน แชท และค่าธรรมเนียม:
 
@@ -108,9 +108,9 @@ Link : https://holesky.etherscan.io/address/0xB2Af43467E4486788b81f3a373d9F8Af8e
 - sendMessage, getMessages
 - sendTokensToFriend, withdrawTokens
 
-### TokenContract : 0x204dD20D690cfa5B12c063Df5a10B4Aa7f49090A
+### TokenContract : 0x2C6c792ED415d7360e783761a425FACaa2B4343C
 
-Link : https://holesky.etherscan.io/address/0x204dD20D690cfa5B12c063Df5a10B4Aa7f49090A
+Link : [https://holesky.etherscan.io/address/0x204dD20D690cfa5B12c063Df5a10B4Aa7f49090A](https://holesky.etherscan.io/address/0x2C6c792ED415d7360e783761a425FACaa2B4343C#code)
 
 จัดการโทเคน $CHAT:
 
