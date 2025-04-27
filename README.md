@@ -99,7 +99,7 @@ https://Podvossto.github.io/Detalk-App
 
 ### ChatContract Address : 0x47C4bdBb0977D926b956e0D6735FB3e6aA49d0e2
 
-Link : [[https://holesky.etherscan.io/address/0xB2Af43467E4486788b81f3a373d9F8Af8e792920#readContract](https://holesky.etherscan.io/address/0x47C4bdBb0977D926b956e0D6735FB3e6aA49d0e2)](https://holesky.etherscan.io/address/0x47C4bdBb0977D926b956e0D6735FB3e6aA49d0e2#code)
+Link : [https://holesky.etherscan.io/address/0x47C4bdBb0977D926b956e0D6735FB3e6aA49d0e2](https://holesky.etherscan.io/address/0x47C4bdBb0977D926b956e0D6735FB3e6aA49d0e2)
 
 จัดการผู้ใช้ เพื่อน แชท และค่าธรรมเนียม:
 
