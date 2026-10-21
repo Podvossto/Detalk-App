@@ -1,7 +1,11 @@
 [
   {
     "inputs": [
-      { "internalType": "address", "name": "_tokenAddress", "type": "address" }
+      {
+        "internalType": "address",
+        "name": "_tokenAddress",
+        "type": "address"
+      }
     ],
     "stateMutability": "nonpayable",
     "type": "constructor"
@@ -62,6 +66,25 @@
       {
         "indexed": true,
         "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
         "name": "from",
         "type": "address"
       },
@@ -101,8 +124,38 @@
     "type": "event"
   },
   {
+    "inputs": [],
+    "name": "MESSAGE_FEE",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "SIGNUP_BONUS",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
-      { "internalType": "address", "name": "_friendAddress", "type": "address" }
+      {
+        "internalType": "address",
+        "name": "_friendAddress",
+        "type": "address"
+      }
     ],
     "name": "addFriend",
     "outputs": [],
@@ -111,11 +164,25 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "_user1", "type": "address" },
-      { "internalType": "address", "name": "_user2", "type": "address" }
+      {
+        "internalType": "address",
+        "name": "_user1",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_user2",
+        "type": "address"
+      }
     ],
     "name": "checkFriendship",
-    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
     "stateMutability": "view",
     "type": "function"
   },
@@ -125,13 +192,21 @@
     "outputs": [
       {
         "components": [
-          { "internalType": "string", "name": "name", "type": "string" },
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
           {
             "internalType": "address",
             "name": "userAddress",
             "type": "address"
           },
-          { "internalType": "bool", "name": "exists", "type": "bool" }
+          {
+            "internalType": "bool",
+            "name": "exists",
+            "type": "bool"
+          }
         ],
         "internalType": "struct ChatContract.User[]",
         "name": "",
@@ -147,13 +222,21 @@
     "outputs": [
       {
         "components": [
-          { "internalType": "string", "name": "name", "type": "string" },
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
           {
             "internalType": "address",
             "name": "userAddress",
             "type": "address"
           },
-          { "internalType": "bool", "name": "exists", "type": "bool" }
+          {
+            "internalType": "bool",
+            "name": "exists",
+            "type": "bool"
+          }
         ],
         "internalType": "struct ChatContract.User[]",
         "name": "",
@@ -165,16 +248,36 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "_otherUser", "type": "address" }
+      {
+        "internalType": "address",
+        "name": "_otherUser",
+        "type": "address"
+      }
     ],
     "name": "getMessages",
     "outputs": [
       {
         "components": [
-          { "internalType": "address", "name": "sender", "type": "address" },
-          { "internalType": "address", "name": "receiver", "type": "address" },
-          { "internalType": "string", "name": "content", "type": "string" },
-          { "internalType": "uint256", "name": "timestamp", "type": "uint256" }
+          {
+            "internalType": "address",
+            "name": "sender",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "receiver",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "content",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "timestamp",
+            "type": "uint256"
+          }
         ],
         "internalType": "struct ChatContract.Message[]",
         "name": "",
@@ -186,19 +289,31 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "_userAddress", "type": "address" }
+      {
+        "internalType": "address",
+        "name": "_userAddress",
+        "type": "address"
+      }
     ],
     "name": "getUserByAddress",
     "outputs": [
       {
         "components": [
-          { "internalType": "string", "name": "name", "type": "string" },
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
           {
             "internalType": "address",
             "name": "userAddress",
             "type": "address"
           },
-          { "internalType": "bool", "name": "exists", "type": "bool" }
+          {
+            "internalType": "bool",
+            "name": "exists",
+            "type": "bool"
+          }
         ],
         "internalType": "struct ChatContract.User",
         "name": "",
@@ -210,15 +325,44 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "_userAddress", "type": "address" }
+      {
+        "internalType": "address",
+        "name": "_userAddress",
+        "type": "address"
+      }
     ],
     "name": "isRegistered",
-    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "inputs": [{ "internalType": "string", "name": "_name", "type": "string" }],
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_name",
+        "type": "string"
+      }
+    ],
     "name": "registerUser",
     "outputs": [],
     "stateMutability": "nonpayable",
@@ -226,8 +370,16 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "_to", "type": "address" },
-      { "internalType": "string", "name": "_content", "type": "string" }
+      {
+        "internalType": "address",
+        "name": "_to",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "_content",
+        "type": "string"
+      }
     ],
     "name": "sendMessage",
     "outputs": [],
@@ -241,10 +393,20 @@
         "name": "_friendAddress",
         "type": "address"
       },
-      { "internalType": "uint256", "name": "_amount", "type": "uint256" }
+      {
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      }
     ],
     "name": "sendTokensToFriend",
-    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
     "stateMutability": "nonpayable",
     "type": "function"
   },
@@ -259,6 +421,37 @@
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_to",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "withdrawTokens",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   }
 ]
