@@ -1,119 +1,130 @@
-# DeTalk - แอปพลิเคชันแชทบนบล็อกเชน (DEMO เพื่อการศึกษา)
+# DeTalk
 
-## ✨ สารบัญ
+DeTalk เป็นแอปแชทบนบล็อกเชนที่ทำเป็นโปรเจกต์กลุ่มที่มหาวิทยาลัย (demo เพื่อการศึกษา)
 
-- [📄 ภาพรวมโปรเจค](#📄-ภาพรวมโปรเจค)
-- [🛠️ เทคโนโลยีที่ใช้](#🛠️-เทคโนโลยที่ใช้)
-- [⚙️ ทดลองใช้งาน](#⚙️-ทดลองใช้งาน)
-- [🔹 ฟีเจอร์หลัก](#🔹-ฟีเจอร์หลัก)
-- [🚀 Smart Contract](#🚀-smart-contract)
+A small on-chain chat app. Users register with a wallet, add friends, and send messages that are stored in a smart contract. Each message costs a small fee paid in an ERC-20-style token (CHAT) issued by the project's own token contract. It was built as a university group project and is a learning demo, not a production messenger: every message is public on-chain.
 
----
-## 📄 สมาชิก
+## Status
 
-<table align="center">
-  <tr>
-    <td align="center">
-      <img src="src/pictures/PitchayaProfile.jpg" width="150" height="150" style="object-fit: cover; border-radius: 50%; overflow: hidden;"><br>
-      <sub>65051645<br>พิชยะ หุตะจูฑะ</sub>
-    </td>
-    <td align="center">
-      <img src="src/pictures/PitchayapaProfile.jpg" width="150" height="150" style="object-fit: cover; border-radius: 50%; overflow: hidden;"><br>
-      <sub>65073814<br>พิชญาภา บุญถนอม</sub>
-    </td>
-    <td align="center">
-      <img src="src/pictures/PiyakitProfile.jpg" width="150" height="150" style="object-fit: cover; border-radius: 50%; overflow: hidden;"><br>
-      <sub>65054924<br>ปิยย์กฤษณ์ วงศ์เกษมศักดิ์</sub>
-    </td>
-  </tr>
-</table>
+- The original deployment was on the Holesky testnet, which has since been shut down. The hosted demo can no longer talk to a contract.
+- The contracts in this repo have changed since that deployment (see [Contracts](#contracts)), so the old addresses are no longer used. To run the app you need to deploy your own copy, locally or on a live testnet such as Sepolia. Instructions are below.
+- The contracts have not been audited.
 
+## Screenshots
 
----
-## 📄 ภาพรวมโปรเจค
+Screenshots from the original Holesky version are in [`docs/screenshots/`](docs/screenshots). Updated images for the current build still need to be added.
 
-DeTalk คือแพลตฟอร์มแชทบนบล็อกเชนที่ให้ผู้ใช้สามารถลงทะเบียน เพิ่มเพื่อน แชท ส่งโทเคน และดูประวัติการทำธุรกรรมได้ โดยมีโทเคน $CHAT เป็นสื่อกลางในการใช้งานระบบ ซึ่งทุกข้อความจะถูกจัดเก็บอย่างถาวรและปลอดภัยผ่าน Smart Contract
+| | |
+|---|---|
+| ![Create profile](docs/screenshots/CreateProfile.png) | ![All users](docs/screenshots/AllUser.png) |
+| ![Chat](docs/screenshots/SentMessage.png) | ![Send token](docs/screenshots/SendToken.png) |
 
-## 🛠️ เทคโนโลยีที่ใช้
+## Features
 
-### Frontend:
+- Register with a wallet address and a display name; new users receive 100 CHAT
+- Browse registered users and add friends
+- Send messages to registered users (0.01 CHAT per message)
+- Send CHAT to friends, recorded as a system message in the conversation
+- Faucet: 10 CHAT per address every 24 hours
+- Profile page with balance and transaction history built from contract events
+- Light and dark theme
 
-- Vite + React + TypeScript
-- Tailwind CSS + shadcn/ui
-- TanStack Query
+## Tech stack
 
-### Blockchain:
+- Frontend: Vite, React 18, TypeScript, Tailwind CSS, shadcn/ui (Radix), React Router, TanStack Query, ethers v5
+- Contracts: Solidity 0.8.24, Hardhat, Mocha/Chai tests
+- CI: GitHub Actions (lint, build, contract tests)
 
-- Solidity
-- Remix IDE
-- Web3.js
+## Architecture
 
-## ⚙️ ทดลองใช้งาน
+```
+contracts/            Hardhat project
+  contracts/          ChatContract.sol, TokenContract.sol
+  test/               Contract tests
+  scripts/            deploy.js, sync-abi.js
+src/
+  components/         UI components (components/ui is shadcn/ui)
+  contexts/           Wallet/contract provider and theme provider
+  config/             Contract addresses (from env), ABIs, chain id
+  contracts/          ABI JSON generated from the Hardhat build
+  pages/              Route components (lazy loaded)
+  hooks/ lib/ types/
+docs/screenshots/
+```
 
-https://Podvossto.github.io/Detalk-App
+**TokenContract** is a minimal ERC-20-style token (CHAT, 18 decimals) with an owner-gated `mint`, a 24 hour faucet (`requestTokens()`), and a `minter` address. Only the minter can call `requestTokens(address,uint256)`.
 
-> ⚡ ต้องติดตั้ง MetaMask และเชื่อมต่อเครือข่าย Holesky Testnet
+**ChatContract** stores users, friend lists and per-pair message history. `registerUser` mints the 100 CHAT sign-up bonus through the token's minter role, `sendMessage` pulls a 0.01 CHAT fee with `transferFrom`, and the owner can withdraw collected fees. Because `sendMessage` and `sendTokensToFriend` use `transferFrom`, the frontend calls `approve` on the token before each send.
 
-## 🔹 ฟีเจอร์หลัก
+The frontend talks to both contracts directly through ethers and a browser wallet (MetaMask). There is no backend.
 
-### • ลงทะเบียนด้วย Wallet Address พร้อมรับโทเคนเริ่มต้น 100 $CHAT  
-![CreateProfile](src/pictures/Screenshot/CreateProfile.png)
-<p>ตั้งชื่อและยืนยัน เมื่อ Transaction Success จะเข้าสู่ระบบอัตโนมัต</p>
+## Run it locally
 
----
+Requirements: Node 20+, MetaMask.
 
-### • เพิ่มเพื่อน  
-<p align="center">
-  <img src="src/pictures/Screenshot/AllUser.png" width="400px" />
-</p>
-<p>เห็น User ทุกคนที่อยู่ในระบบและสามารถแอดได้</p>
+```bash
+# 1. install
+npm ci
+npm --prefix contracts ci
 
----
+# 2. start a local chain (keep running)
+cd contracts && npx hardhat node
 
-### • แชทแบบส่วนตัว (0.01 $CHAT ต่อข้อความ)  
-![SentMessage](src/pictures/Screenshot/SentMessage.png)
-<p>สามารถส่งข้อความหาคนที่เป็นเพื่อนเท่านั้น</p>
+# 3. in a second terminal: deploy, then copy the printed addresses
+cd contracts && npm run deploy:local
 
-![SendToken](src/pictures/Screenshot/SendToken.png)
-<p>สามารถส่ง TOKEN CHAT ให้เพื่อนได้</p>
+# 4. configure and start the frontend
+cd ..
+cp .env.example .env.local
+# set VITE_CHAT_CONTRACT_ADDRESS, VITE_TOKEN_CONTRACT_ADDRESS and VITE_CHAIN_ID=31337
+npm run dev
+```
 
----
+Open http://localhost:8080/Detalk-App/. In MetaMask, add the network `http://127.0.0.1:8545` with chain id `31337` and import one of the test private keys printed by `hardhat node`. These are well-known development keys; never use them on a real network.
 
-### • ขอโทเคนจากระบบ (จำกัด 10 $CHAT ต่อ 24 ชม.)  
-![GetToken](src/pictures/Screenshot/GetToken.png)
-<p>กดรับ 10 CHAT TOKEN ทุกๆ 1 วัน</p>
+### Deploying to Sepolia
 
----
+```bash
+cd contracts
+export SEPOLIA_RPC_URL=<your rpc url>
+export DEPLOYER_PRIVATE_KEY=<throwaway test wallet key>
+npm run deploy:sepolia
+```
 
-### • ดูโปรไฟล์ / ยอด TOKEN คงเหลือ / ประวัติธุรกรรมต่างๆ  
-![Profile](src/pictures/Screenshot/Profile.png)
+Use a wallet that only holds testnet funds. The script deploys `TokenContract`, deploys `ChatContract`, and calls `setMinter` so the chat contract can mint the sign-up bonus. Put the printed addresses in `.env.local` with `VITE_CHAIN_ID=11155111`.
 
----
+If you change a contract, run `npm --prefix contracts run compile` and `npm --prefix contracts run sync-abi` to refresh `src/contracts/*.json`.
 
-### • ธีม Dark / Light Mode  
-![Setting](src/pictures/Screenshot/Setting.png)
+## Tests and checks
 
----
+```bash
+npm run lint
+npm run build
+npm run test:contracts
+```
 
-## 🚀 Smart Contract
+The contract suite (29 tests) covers registration, friends, message fees and allowances, token transfers between friends, fee withdrawal, the faucet cooldown, the minter restriction and ownership transfer. There are no frontend tests.
 
-### ChatContract Address : 0x47C4bdBb0977D926b956e0D6735FB3e6aA49d0e2
+## Contracts
 
-Link : [https://holesky.etherscan.io/address/0x47C4bdBb0977D926b956e0D6735FB3e6aA49d0e2](https://holesky.etherscan.io/address/0x47C4bdBb0977D926b956e0D6735FB3e6aA49d0e2)
+Changes made after the original university submission:
 
-จัดการผู้ใช้ เพื่อน แชท และค่าธรรมเนียม:
+- `requestTokens(address,uint256)` could be called by anyone, letting any account mint unlimited CHAT. It is now restricted to a `minter` that the owner sets (the ChatContract).
+- `transferOwnership` had no access check in either contract; it is now `onlyOwner`.
+- Compiler pinned to 0.8.24; empty names and messages are rejected.
 
-- registerUser, getUserByAddress, getAllUsers
-- addFriend, getFriends, checkFriendship
-- sendMessage, getMessages
-- sendTokensToFriend, withdrawTokens
+Known limitations: messages are stored in plain text on-chain, `getAllUsers` is unbounded, and the transaction history only looks back about 10,000 blocks.
 
-### TokenContract : 0x2C6c792ED415d7360e783761a425FACaa2B4343C
+## Team
 
-Link : [https://holesky.etherscan.io/address/0x204dD20D690cfa5B12c063Df5a10B4Aa7f49090A](https://holesky.etherscan.io/address/0x2C6c792ED415d7360e783761a425FACaa2B4343C#code)
+Computer Science project, group of three.
 
-จัดการโทเคน $CHAT:
+| Student ID | Name |
+|---|---|
+| 65051645 | พิชยะ หุตะจูฑะ (Pitchaya Hutajuta) |
+| 65073814 | พิชญาภา บุญถนอม |
+| 65054924 | ปิยย์กฤษณ์ วงศ์เกษมศักดิ์ |
 
-- transfer, approve, allowance
-- mint, requestTokens
-- getCooldownRemaining
+## License
+
+[MIT](LICENSE)
