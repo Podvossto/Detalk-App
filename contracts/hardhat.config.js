@@ -9,7 +9,7 @@ module.exports = {
     settings: { optimizer: { enabled: true, runs: 200 } },
   },
   networks: {
-    localhost: { url: "http://127.0.0.1:8545" },
+    localhost: { url: process.env.LOCAL_RPC_URL || "http://127.0.0.1:8545" },
     ...(SEPOLIA_RPC_URL && DEPLOYER_PRIVATE_KEY
       ? { sepolia: { url: SEPOLIA_RPC_URL, accounts: [DEPLOYER_PRIVATE_KEY] } }
       : {}),
