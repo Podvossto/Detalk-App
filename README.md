@@ -103,7 +103,7 @@ npm run build
 npm run test:contracts
 ```
 
-The contract suite (29 tests) covers registration, friends, message fees and allowances, token transfers between friends, fee withdrawal, the faucet cooldown, the minter restriction and ownership transfer. There are no frontend tests.
+The contract suite (28 tests) covers registration, friends, message fees and allowances, token transfers between friends, fee withdrawal, the faucet cooldown, the minter restriction and ownership transfer. There are no frontend tests.
 
 ## Contracts
 
