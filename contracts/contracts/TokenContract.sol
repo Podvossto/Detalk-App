@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.17;
+pragma solidity 0.8.24;
 
 contract TokenContract {
     string public name = "Chat Token";
@@ -7,43 +7,49 @@ contract TokenContract {
     uint8 public decimals = 18;
     uint256 public totalSupply;
     
-    // Owner of the contract
     address public owner;
+
+    // Only this address (the ChatContract) may mint through requestTokens(address,uint256)
+    address public minter;
     
-    // Balances for each account
     mapping(address => uint256) private balances;
     
-    // Owner of account approves the transfer of an amount to another account
     mapping(address => mapping(address => uint256)) private allowed;
     
-    // Token request cooldown (24 hours)
     uint256 public requestCooldown = 24 hours;
     
-    // Last request timestamp for each user
     mapping(address => uint256) private lastRequestTime;
     
-    // Events
     event Transfer(address indexed from, address indexed to, uint256 value);
     event Approval(address indexed owner, address indexed spender, uint256 value);
     event Mint(address indexed to, uint256 amount);
     event TokensRequested(address indexed to, uint256 amount);
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+    event MinterUpdated(address indexed previousMinter, address indexed newMinter);
     
     constructor() {
         owner = msg.sender;
     }
     
-    // Modifier to check if the caller is the owner
     modifier onlyOwner() {
         require(msg.sender == owner, "Only owner can call this function");
         _;
     }
+
+    modifier onlyMinter() {
+        require(msg.sender == minter, "Only minter can call this function");
+        _;
+    }
     
-    // Transfer ownership of the contract to a new account
-    function transferOwnership(address newOwner) public {
+    function transferOwnership(address newOwner) public onlyOwner {
         require(newOwner != address(0), "New owner cannot be the zero address");
         emit OwnershipTransferred(owner, newOwner);
         owner = newOwner;
+    }
+
+    function setMinter(address newMinter) public onlyOwner {
+        emit MinterUpdated(minter, newMinter);
+        minter = newMinter;
     }
     
     // Get the token balance for account
@@ -104,15 +110,14 @@ contract TokenContract {
     
     // Request tokens from the faucet (limited by cooldown)
     function requestTokens() public returns (bool) {
-        require(block.timestamp >= lastRequestTime[msg.sender] + requestCooldown || lastRequestTime[msg.sender] == 0, "Cooldown period not over yet");
+        require(
+            lastRequestTime[msg.sender] == 0 || block.timestamp >= lastRequestTime[msg.sender] + requestCooldown,
+            "Cooldown period not over yet"
+        );
         
-        // Amount to mint (10 tokens)
         uint256 amount = 10 * 10**18;
-        
-        // Update last request time
         lastRequestTime[msg.sender] = block.timestamp;
         
-        // Mint tokens
         totalSupply += amount;
         balances[msg.sender] += amount;
         
@@ -121,13 +126,10 @@ contract TokenContract {
         return true;
     }
     
-    // Request tokens for a specific address (can be called by ChatContract)
-    function requestTokens(address _recipient, uint256 _amount) public returns (bool) {
-        // ตรวจสอบว่าผู้เรียกเป็น ChatContract
-        // ในกรณีนี้เราอนุญาตให้ทุกคนเรียกได้เพื่อความง่าย
-        // ในการใช้งานจริงควรใส่การตรวจสอบว่าผู้เรียกเป็น ChatContract เท่านั้น
-        
-        // Mint tokens
+    // Mint to a specific address on behalf of the ChatContract (sign-up bonus)
+    function requestTokens(address _recipient, uint256 _amount) public onlyMinter returns (bool) {
+        require(_recipient != address(0), "Cannot mint to zero address");
+
         totalSupply += _amount;
         balances[_recipient] += _amount;
         
@@ -150,5 +152,4 @@ contract TokenContract {
         
         return requestCooldown - timeSinceLastRequest;
     }
-    
 }

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.17;
+pragma solidity 0.8.24;
 
 import "./TokenContract.sol";
 
@@ -17,10 +17,10 @@ contract ChatContract {
         uint256 timestamp;
     }
     
-    // Token contract reference
+    uint256 public constant MESSAGE_FEE = 0.01 ether;
+    uint256 public constant SIGNUP_BONUS = 100 ether;
+
     TokenContract public token;
-    
-    // Owner of the contract
     address public owner;
     
     // Mapping from address to User
@@ -52,12 +52,12 @@ contract ChatContract {
     }
     
     constructor(address _tokenAddress) {
+        require(_tokenAddress != address(0), "Token address cannot be zero");
         token = TokenContract(_tokenAddress);
         owner = msg.sender;
     }
     
-    // Transfer ownership of the contract to a new account
-    function transferOwnership(address newOwner) public {
+    function transferOwnership(address newOwner) public onlyOwner {
         require(newOwner != address(0), "New owner cannot be the zero address");
         emit OwnershipTransferred(owner, newOwner);
         owner = newOwner;
@@ -66,6 +66,7 @@ contract ChatContract {
     // Register a new user
     function registerUser(string memory _name) public {
         require(!users[msg.sender].exists, "User already registered");
+        require(bytes(_name).length > 0, "Name cannot be empty");
         
         users[msg.sender] = User({
             name: _name,
@@ -75,7 +76,7 @@ contract ChatContract {
         
         userAddresses.push(msg.sender);
 
-        token.requestTokens(msg.sender, 100 * 10**18); // 100 tokens
+        token.requestTokens(msg.sender, SIGNUP_BONUS);
         
         emit UserRegistered(msg.sender, _name);
     }
@@ -128,6 +129,10 @@ contract ChatContract {
     function sendMessage(address _to, string memory _content) public {
         require(users[msg.sender].exists, "Sender not registered");
         require(users[_to].exists, "Receiver not registered");
+        require(bytes(_content).length > 0, "Message cannot be empty");
+        
+        // Collect the fee first; reverts if the sender has not approved enough
+        require(token.transferFrom(msg.sender, address(this), MESSAGE_FEE), "Fee transfer failed");
         
         // Create the message
         Message memory newMessage = Message({
@@ -140,9 +145,6 @@ contract ChatContract {
         // Store the message in both users' message history
         messages[msg.sender][_to].push(newMessage);
         messages[_to][msg.sender].push(newMessage);
-        
-        // Charge a small token fee for sending messages
-        token.transferFrom(msg.sender, address(this), 1 * 10**16); // 0.01 tokens
         
         emit MessageSent(msg.sender, _to, _content, block.timestamp);
     }
@@ -171,13 +173,9 @@ contract ChatContract {
         require(users[_friendAddress].exists, "Receiver not registered");
         require(isFriend[msg.sender][_friendAddress], "You can only send tokens to friends");
         require(_amount > 0, "Amount must be greater than 0");
-        
-        // First, check if sender has enough tokens
         require(token.balanceOf(msg.sender) >= _amount, "Insufficient token balance");
         
-        // Transfer tokens from sender to friend
-        bool success = token.transferFrom(msg.sender, _friendAddress, _amount);
-        require(success, "Token transfer failed");
+        require(token.transferFrom(msg.sender, _friendAddress, _amount), "Token transfer failed");
         
         // Create a system message about the token transfer
         string memory content = string(abi.encodePacked(
@@ -206,13 +204,12 @@ contract ChatContract {
         return true;
     }
     
-    // Admin function to withdraw tokens from the contract (fees collected from message sending)
+    // Withdraw collected message fees
     function withdrawTokens(address _to, uint256 _amount) public onlyOwner {
         uint256 contractBalance = token.balanceOf(address(this));
         require(_amount <= contractBalance, "Insufficient contract balance");
         
-        bool success = token.transfer(_to, _amount);
-        require(success, "Token transfer failed");
+        require(token.transfer(_to, _amount), "Token transfer failed");
     }
     
     // Helper function to format token amount (convert from wei to ether format)
