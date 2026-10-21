@@ -1,22 +1,3 @@
-// Add type declaration at the top of the file
-declare global {
-  interface Window {
-    ethereum: {
-      isMetaMask?: boolean;
-      request: (request: {
-        method: string;
-        params?: Array<unknown>;
-      }) => Promise<unknown>;
-      on: (eventName: string, callback: (...args: unknown[]) => void) => void;
-      removeListener: (
-        eventName: string,
-        callback: (...args: unknown[]) => void
-      ) => void;
-      selectedAddress?: string;
-    };
-  }
-}
-
 import { Link, useNavigate } from "react-router-dom";
 import { useChatContract } from "@/contexts/ChatContractContext";
 import { Button } from "@/components/ui/button";
