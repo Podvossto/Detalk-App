@@ -1,9 +1,11 @@
 import ChatContractABI from "../contracts/ChatContract.json";
 import TokenContractABI from "../contracts/TokenContract.json";
 
+const env = import.meta.env;
+
 export const CONTRACT_ADDRESSES = {
-  CHAT: "0x0797Ebf0f6d74aCDB6E5c10443270429B2609651",
-  TOKEN: "0x39BE390C81c1bF662A2827604a6528d18133825d",
+  CHAT: env.VITE_CHAT_CONTRACT_ADDRESS as string,
+  TOKEN: env.VITE_TOKEN_CONTRACT_ADDRESS as string,
 };
 
 export const CONTRACT_ABIS = {
@@ -12,6 +14,15 @@ export const CONTRACT_ABIS = {
 };
 
 export const TOKEN_AMOUNTS = {
-  MESSAGE_FEE: "0.01", // 0.01 tokens per message
-  FAUCET_AMOUNT: "10", // 10 tokens from faucet
+  MESSAGE_FEE: "0.01",
+  FAUCET_AMOUNT: "10",
 };
+
+export const CHAIN = {
+  ID: Number(env.VITE_CHAIN_ID ?? 11155111),
+  NAME: (env.VITE_CHAIN_NAME as string) ?? "Sepolia",
+};
+
+export const isConfigured = Boolean(
+  CONTRACT_ADDRESSES.CHAT && CONTRACT_ADDRESSES.TOKEN
+);

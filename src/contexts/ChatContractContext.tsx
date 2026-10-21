@@ -3,13 +3,17 @@
 import { useState, useEffect, useContext, ReactNode } from "react";
 import { ethers } from "ethers";
 import { toast } from "@/components/ui/sonner";
-import ChatContractABI from "../contracts/ChatContract.json";
-import TokenContractABI from "../contracts/TokenContract.json";
+import {
+  CONTRACT_ADDRESSES,
+  CONTRACT_ABIS,
+  TOKEN_AMOUNTS,
+  isConfigured,
+  CHAIN,
+} from "@/config/contracts";
 import { ChatContractContext, ChatContractContextType } from "./contexts";
 
-// Contract addresses
-const CHAT_CONTRACT_ADDRESS = "0x47C4bdBb0977D926b956e0D6735FB3e6aA49d0e2";
-const TOKEN_CONTRACT_ADDRESS = "0x2C6c792ED415d7360e783761a425FACaa2B4343C";
+const CHAT_CONTRACT_ADDRESS = CONTRACT_ADDRESSES.CHAT;
+const TOKEN_CONTRACT_ADDRESS = CONTRACT_ADDRESSES.TOKEN;
 
 // User type definition
 export interface User {
@@ -140,9 +144,22 @@ export const ChatContractProvider = ({
   // Connect wallet function
   const connectWallet = async (): Promise<boolean> => {
     try {
+      if (!isConfigured) {
+        toast.error(
+          "Contract addresses are not configured. Set them in .env.local."
+        );
+        setLoading(false);
+        return false;
+      }
       if (window.ethereum) {
         const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
         await web3Provider.send("eth_requestAccounts", []);
+        const network = await web3Provider.getNetwork();
+        if (network.chainId !== CHAIN.ID) {
+          toast.error(`Wrong network. Please switch your wallet to ${CHAIN.NAME}.`);
+          setLoading(false);
+          return false;
+        }
         const web3Signer = web3Provider.getSigner();
         const address = await web3Signer.getAddress();
 
@@ -152,13 +169,13 @@ export const ChatContractProvider = ({
 
         const chat = new ethers.Contract(
           CHAT_CONTRACT_ADDRESS,
-          ChatContractABI,
+          CONTRACT_ABIS.CHAT,
           web3Signer
         );
 
         const token = new ethers.Contract(
           TOKEN_CONTRACT_ADDRESS,
-          TokenContractABI,
+          CONTRACT_ABIS.TOKEN,
           web3Signer
         );
 
@@ -383,7 +400,7 @@ export const ChatContractProvider = ({
     try {
       // First check token balance
       const balance = await tokenContract.balanceOf(currentAccount);
-      const messageFee = ethers.utils.parseEther("0.01"); // 0.01 tokens per message
+      const messageFee = ethers.utils.parseEther(TOKEN_AMOUNTS.MESSAGE_FEE);
 
       if (balance.lt(messageFee)) {
         return {
@@ -477,7 +494,7 @@ export const ChatContractProvider = ({
   const requestTokens = async (): Promise<boolean> => {
     if (!tokenContract || !currentAccount) return false;
     try {
-      const tx = await tokenContract.requestTokens();
+      const tx = await tokenContract["requestTokens()"]();
       toast.success("Token request sent! Please wait for confirmation.");
 
       const receipt = await tx.wait();
