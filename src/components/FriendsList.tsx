@@ -35,6 +35,7 @@ export const FriendsList = ({
     const interval = setInterval(loadFriends, 30000); // Refresh every 30 seconds
 
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loading) {

@@ -48,6 +48,7 @@ export const ChatWindow = ({ friend }: ChatWindowProps) => {
     const interval = setInterval(loadMessages, 10000); // Refresh every 10 seconds
 
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [friend]);
 
   const handleSendMessage = async (e: React.FormEvent) => {

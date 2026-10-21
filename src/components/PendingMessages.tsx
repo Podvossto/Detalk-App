@@ -120,6 +120,7 @@ export const PendingMessages = () => {
     fetchPendingMessages();
     const interval = setInterval(fetchPendingMessages, 30000);
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentAccount]);
 
   return (

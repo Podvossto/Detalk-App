@@ -52,6 +52,7 @@ export const UserList = ({ onSelectFriend }: UserListProps) => {
 
   useEffect(() => {
     loadUsers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleAddFriend = async (user: User) => {
